@@ -17,10 +17,10 @@ jobs:
     # e.g. You can use GitHub Organization secrets to set them for all existing and new repositories.
     env:
       CI: 'true'
-      TECHDOCS_S3_BUCKET_NAME: sakstest
-      AWS_ACCESS_KEY_ID: AKIA23PESRF6STVCXAFR
-      AWS_SECRET_ACCESS_KEY: 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
-      AWS_REGION: ap-south-1
+      TECHDOCS_S3_BUCKET_NAME: 'sakstest'
+      AWS_ACCESS_KEY_ID: 'AKIA23PESRF6STVCXAFR'
+      AWS_SECRET_ACCESS_KEY: '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'
+      AWS_REGION: 'ap-south-1'
       ENTITY_NAMESPACE: 'default'
       ENTITY_KIND: 'Component'
       ENTITY_NAME: 'backstage-circleci'
