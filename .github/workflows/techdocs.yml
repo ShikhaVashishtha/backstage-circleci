@@ -9,25 +9,7 @@ on:
     #   - "docs/**"
     #   - "mkdocs.yml"
 
-jobs:
-  git-auto-commit:
-    runs-on: ubuntu-latest
-
-    steps:
-    - uses: actions/checkout@v2
-
-    - name: Use git-auto-commit-action
-      id: "auto-commit-action"
-      uses: ./
-
-    - name: "no changes detected"
-      if: steps.auto-commit-action.outputs.changes_detected == false
-      run: "echo \"No changes detected\""
-
-    - name: "changes detected"
-      if: steps.auto-commit-action.outputs.changes_detected == true
-      run: "echo \"Changes detected\""
-      
+jobs:      
   publish-techdocs-site:
     runs-on: ubuntu-latest
 
@@ -40,7 +22,7 @@ jobs:
       AWS_REGION: ap-south-1
       ENTITY_NAMESPACE: 'default'
       ENTITY_KIND: 'Component'
-      ENTITY_NAME: 'my-doc-entity'
+      ENTITY_NAME: 'backstage-circleci'
       # In a Software template, Scaffolder will replace {{cookiecutter.component_id | jsonify}}
       # with the correct entity name. This is same as metadata.name in the entity's catalog-info.yaml
       # ENTITY_NAME: '{{ cookiecutter.component_id | jsonify }}'
@@ -48,9 +30,11 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-
-      - uses: actions/setup-node@v2
-      - uses: actions/setup-python@v2
+        
+      - name: Commit changes
+        uses: EndBug/add-and-commit@v9
+        with:
+          author_name: Shi
 
       # the 2 steps below can be removed if you aren't using plantuml in your documentation
       - name: setup java
