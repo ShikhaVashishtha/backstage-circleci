@@ -58,10 +58,9 @@ integrations:
       #   token: ${GHE_TOKEN}
 
 proxy:
-  # '/test':
-  #   target: 'https://example.com'
-  #   changeOrigin: true
-
+  '/test':
+    target: 'https://example.com'
+    changeOrigin: true
   '/circleci/api':
     target: https://circleci.com/api/v1.1
     headers:
@@ -78,7 +77,15 @@ techdocs:
   generator:
     runIn: 'docker' # Alternatives - 'docker'
   publisher:
-    type: 'local' # Alternatives - 'googleGcs' or 'awsS3'. Read documentation for using alternatives.
+    type: 'awsS3'
+    awsS3:
+      bucketName: 'sakstest'
+      region: ap-south-1
+      credentials:
+        accessKeyId: AKIA23PESRF6STVCXAFR
+        secretAccessKey: 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
+#   publisher:
+#     type: 'local' # Alternatives - 'googleGcs' or 'awsS3'. Read documentation for using alternatives.
 
 auth:
   # see https://backstage.io/docs/auth/ to learn about auth providers
